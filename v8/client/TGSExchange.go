@@ -26,7 +26,7 @@ func (cl *Client) TGSExchange(tgsReq messages.TGSReq, kdcRealm string, tgt messa
 	if err != nil {
 		return tgsReq, tgsRep, krberror.Errorf(err, krberror.EncodingError, "TGS Exchange Error: failed to marshal TGS_REQ")
 	}
-	r, err := cl.sendToKDC(b, kdcRealm)
+	r, err := cl.SendToKDC(b, kdcRealm)
 	if err != nil {
 		if _, ok := err.(messages.KRBError); ok {
 			return tgsReq, tgsRep, krberror.Errorf(err, krberror.KDCError, "TGS Exchange Error: kerberos error response from KDC when requesting for %s", tgsReq.ReqBody.SName.PrincipalNameString())
