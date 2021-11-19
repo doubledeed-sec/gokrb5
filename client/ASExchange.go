@@ -29,7 +29,7 @@ func (cl *Client) ASExchange(realm string, ASReq messages.ASReq, referral int) (
 	}
 	var ASRep messages.ASRep
 
-	rb, err := cl.SendToKDC(b, realm)
+	rb, err := cl.sendToKDC(b, realm)
 	if err != nil {
 		if e, ok := err.(messages.KRBError); ok {
 			switch e.ErrorCode {
